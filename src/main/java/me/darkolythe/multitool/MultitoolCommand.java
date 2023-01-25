@@ -5,15 +5,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import static me.darkolythe.multitool.MultitoolInventory.giveMultitool;
 
 public class MultitoolCommand implements CommandExecutor {
 
 	private Multitool main = Multitool.getInstance();
-	
-	@Override
+
+    @Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
 
 		if (sender instanceof Player) {
@@ -22,8 +24,16 @@ public class MultitoolCommand implements CommandExecutor {
 				if (cmd.getName().equalsIgnoreCase("Multitool")) {
 					if (args.length == 1) {
 						if (args[0].equalsIgnoreCase("open") || args[0].equalsIgnoreCase("O")) {
+                            if (!main.multitoolutils.allowedWorld(player.getWorld())){
+                                sender.sendMessage(main.prefix + ChatColor.RED + "MultiTool is not allowed in this world!");
+                                return true;
+                            }
 							player.openInventory(main.multitoolutils.getToolInv(player));
 						} else if (args[0].equalsIgnoreCase("toggle") || args[0].equalsIgnoreCase("T")) {
+                            if (!main.multitoolutils.allowedWorld(player.getWorld())){
+                                sender.sendMessage(main.prefix + ChatColor.RED + "MultiTool is not allowed in this world!");
+                                return true;
+                            }
 							main.multitoolutils.setToggle(player.getUniqueId(), !main.multitoolutils.getToggle(player.getUniqueId()));
 							if (main.multitoolutils.getToggle(player.getUniqueId())) {
 								sender.sendMessage(main.prefix + ChatColor.GREEN + "Multitool On!");
@@ -31,6 +41,10 @@ public class MultitoolCommand implements CommandExecutor {
 								sender.sendMessage(main.prefix + ChatColor.GREEN + "Multitool Off!");
 							}
 						} else if (args[0].equalsIgnoreCase("create") || args[0].equalsIgnoreCase("c")) {
+                            if (!main.multitoolutils.allowedWorld(player.getWorld())){
+                                sender.sendMessage(main.prefix + ChatColor.RED + "MultiTool is not allowed in this world!");
+                                return true;
+                            }
 							giveMultitool(main, player);
 						} else if (args[0].equalsIgnoreCase("reload")) {
 							if (player.hasPermission("multitool.reload")) {

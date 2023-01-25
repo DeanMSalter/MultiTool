@@ -27,6 +27,7 @@ public class Multitool extends JavaPlugin implements Listener {
 	public boolean dropondeath;
 	public List<String> blacklistedLores = new ArrayList<>();
 
+    public List<String> blacklistedWorlds = new ArrayList<>();
 	public static Multitool plugin;
 	public MultitoolInventory multitoolinventory;
 	public MultitoolEvents multitoolevents;
@@ -47,7 +48,7 @@ public class Multitool extends JavaPlugin implements Listener {
 
 		dropondeath = getConfig().getBoolean("droptoolsondeath");
 		blacklistedLores = getConfig().getStringList("lore-blacklist");
-
+        blacklistedWorlds = getConfig().getStringList("world-blacklist");
 		getServer().getPluginManager().registerEvents(this, this);
 		getServer().getPluginManager().registerEvents(multitoolevents, this);
 		getServer().getPluginManager().registerEvents(multitoolinventory, this);

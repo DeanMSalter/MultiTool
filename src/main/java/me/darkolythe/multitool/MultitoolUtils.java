@@ -3,6 +3,7 @@ package me.darkolythe.multitool;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -97,8 +98,12 @@ public class MultitoolUtils implements Listener {
     public void reload() {
         main.reloadConfig();
         main.dropondeath = main.getConfig().getBoolean("droptoolsondeath");
+        main.blacklistedWorlds = main.getConfig().getStringList("world-blacklist");
     }
 
+    public boolean allowedWorld(World world){
+        return !main.blacklistedWorlds.contains(world.getName().toUpperCase());
+    }
 
 
 

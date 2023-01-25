@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
@@ -79,6 +80,11 @@ public class MultitoolToolDetect implements Listener {
 
 				if (handitem.getType() != Material.AIR && handitem.getAmount() > 0) {
 					if (isItem(handmeta, player)) {
+                        if (!main.multitoolutils.allowedWorld(player.getWorld())){
+                            player.getInventory().remove(handitem);
+                            player.sendMessage(main.prefix + ChatColor.RED + "MultiTool is not allowed in this world!");
+                            return;
+                        }
 						ItemStack givestack = new ItemStack(Material.AIR, 0);
 						setMTItem(player, true);
 						if (isSword) { //if the block is air, make it a sword, else, continue

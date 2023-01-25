@@ -8,3 +8,4 @@ droptoolsondeath: false
 # These lores don't need to match the line exactly.
 # ex: If the tool has "&bhello" as a lore, you can put "he" to blacklist it.
 lore-blacklist: ["blacklisted-lore", "&a&lanother-lore"]
+world-blacklist: ["EVENT"]
