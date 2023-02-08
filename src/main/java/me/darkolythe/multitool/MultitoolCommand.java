@@ -188,7 +188,7 @@ public class MultitoolCommand implements CommandExecutor {
                             }
                         }
                         else {
-							sender.sendMessage(main.prefix + ChatColor.RED + "Invalid Arguments: /mt [open, toggle, create]");
+							sender.sendMessage(main.prefix + ChatColor.RED + "Invalid Arguments: /mt [open, toggle, create, generate, empty]");
 						}
 					} else if (args.length == 2 && (args[0].equalsIgnoreCase("Open") || args[0].equalsIgnoreCase("O"))) {
 						if (player.hasPermission("multitool.useothers")) {
